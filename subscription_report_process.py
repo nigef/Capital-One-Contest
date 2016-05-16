@@ -1,12 +1,35 @@
+'''Won the contest: https://www.mindsumo.com/contests/credit-card-transactions
+
+Use transaction data to categorize clients
+
+Online businesses of all sorts are increasingly reliant on credit card
+transactions and the data they create. Information on where clients are, their
+likely purchasing behaviors, and other bits of data can be used by business to
+improve their practices. Taking the raw data and turning it into useful
+information is no easy task though, which is why many engineers find
+themselves processing and manipulating it on a regular basis.
+
+Deliverables:
+
+1) Outputs a list of subscription IDs, their subscription type (daily,
+monthly, yearly, one-off), and the duration of their subscription.
+
+2) Give annual revenue numbers for all years between 1966 and 2014.
+Which years had the highest revenue growth, and highest revenue loss?
+
+3) Predict annual revenue for year 2015 (based on historical retention and new
+subscribers)
+'''
+
 import datetime
 
 
-class InvalidDateTypeError(object):
+class InvalidDateTypeError(Exception):
     '''InvalidDateTypeError raised when we cannot discern a subscription type
     (day, month, year, one-off).'''
 
 
-class FileNotProcessedError(object):
+class FileNotProcessedError(Exception):
     '''FileNotProcessedError raised when file not yet processed.'''
 
 
@@ -102,7 +125,7 @@ class Clients(object):
         elif (27 < delta < 32) and type_ != 'daily':
             ret = 'monthly'
         # Daily subscription
-        elif (0 < delta < 28):
+        elif 0 < delta < 28:
             ret = 'daily'
         else:  # error, negative
             raise InvalidDateTypeError
@@ -155,7 +178,7 @@ class Clients(object):
             # line = input_file.readline()
             first_line = input_file.readline()
             if first_line[0:2] != 'Id':
-                    self._process_line(first_line)  # incase header is missing
+                self._process_line(first_line)  # incase header is missing
 
             # Loop over the file object. This is relatively memory efficient,
             # fast, and simple.
