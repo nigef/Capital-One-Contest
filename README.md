@@ -1,7 +1,5 @@
 # Capital-One-Contest, Summer 2015
 
-[https://www.mindsumo.com/contests/credit-card-transactions](link)
-
 
 # OOP Python Solution with O(n) and O(n^2) Public Methods and Including Bonus Questions
 
